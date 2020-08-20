@@ -179,12 +179,12 @@ def main():
                     google_ttl = rrset["ttl"]
                     google_type = rrset["type"]
                     logging.debug(
-                        f"config_h: {host} current_ip: {ip} g_host: {rrset['name']} g_ip: {google_ip}"
+                        f"config_h: {host} current_ip: {ip} g_host: {rrset['name']} g_ip: {google_ip} type: {google_type}"
                     )
 
                     # ensure that the record we received has the same name as the record we want to create
-                    if google_host == host:
-                        logging.info("Config file host and google host record match")
+                    if google_host == host and rrset["type"] is "A":
+                        logging.info("Config file host and google host record and type match")
 
                         if google_ip == ip:
                             logging.info(
