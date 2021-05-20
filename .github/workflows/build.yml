@@ -44,9 +44,9 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.GITHUB_REPOSITORY }}:latest
+            ${{ github.repository}}:latest
       -
         name: Inspect image
         if: always() && github.event_name != 'pull_request'
         run: |
-          docker buildx imagetools inspect ${{ env.GITHUB_REPOSITORY }}@${{ steps.build.outputs.digest }}
+          docker buildx imagetools inspect ${{ github.repository}}@${{ steps.build.outputs.digest }}
